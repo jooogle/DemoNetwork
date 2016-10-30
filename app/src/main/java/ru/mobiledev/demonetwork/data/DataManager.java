@@ -6,6 +6,7 @@ import java.util.List;
 
 import ru.mobiledev.demonetwork.DemoApplication;
 import ru.mobiledev.demonetwork.data.model.Repository;
+import ru.mobiledev.demonetwork.data.model.User;
 import ru.mobiledev.demonetwork.data.remote.NetworkService;
 import rx.Observable;
 
@@ -25,5 +26,13 @@ public class DataManager {
 
 		return networkService.getRestService()
 				.publicRepositories(userName);
+	}
+
+	public Observable<User> userFromUrl(String userUrl) {
+		DemoApplication application = DemoApplication.getInstance(mContext);
+		NetworkService networkService = application.getNetworkService();
+
+		return networkService.getRestService()
+				.userFromUrl(userUrl);
 	}
 }

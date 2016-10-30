@@ -27,6 +27,7 @@ import ru.mobiledev.demonetwork.adapters.RepositoryAdapter;
 import ru.mobiledev.demonetwork.data.model.Repository;
 import ru.mobiledev.demonetwork.presenter.MainPresenter;
 import ru.mobiledev.demonetwork.view.MainMvpView;
+import ru.mobiledev.demonetwork.view.RepositoryActivity;
 
 public class MainFragment extends Fragment implements MainMvpView {
 	private static final String TAG = "MainFragment";
@@ -122,6 +123,9 @@ public class MainFragment extends Fragment implements MainMvpView {
 
 	private void setupRecyclerView(RecyclerView recyclerView) {
 		RepositoryAdapter adapter = new RepositoryAdapter();
+		adapter.setCallback(repository -> {
+			startActivity(RepositoryActivity.newIntent(getContext(), repository));
+		});
 		recyclerView.setAdapter(adapter);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 	}
